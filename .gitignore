@@ -4,7 +4,7 @@ node_modules/
 .pnp.js
 
 # Environment variables
-.env
+# .env  <-- Comment this line out temporarily
 .env.local
 .env.development.local
 .env.test.local
