@@ -1,30 +1,23 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const { PrismaClient } = require('@prisma/client');
 const morgan = require('morgan');
 
-// Load environment variables FIRST
+// Load environment variables
 dotenv.config();
 
-// Only import Prisma AFTER environment variables are loaded
-const { PrismaClient } = require('@prisma/client');
+// Initialize Prisma
+const prisma = new PrismaClient();
 
 // Initialize express
 const app = express();
-
-const PORT = process.env.PORT || 5000; // ✅ This ensures the correct port
-
-app.listen(PORT, '0.0.0.0', () => { // ✅ Explicitly bind to all interfaces
-  console.log(`Server running on port ${PORT}`);
-});
+const PORT = process.env.PORT || 10000;
 
 // Debug environment variables
 console.log('Environment variables loaded:');
 console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
 console.log('JWT_SECRET exists:', !!process.env.JWT_SECRET);
-
-// Initialize Prisma
-const prisma = new PrismaClient();
 
 // Middleware
 app.use(cors());
@@ -76,7 +69,7 @@ process.on('unhandledRejection', (reason, promise) => {
 const startServer = async () => {
   try {
     app.listen(PORT, '0.0.0.0', () => {
-      console.log(`Server running on port ${PORT} and host 0.0.0.0`);
+      console.log(`Server running on port ${PORT}`);
     });
   } catch (error) {
     console.error('Unable to start server:', error);
@@ -84,7 +77,6 @@ const startServer = async () => {
   }
 };
 
-// Start the server
 startServer();
 
 // Handle shutdown gracefully
