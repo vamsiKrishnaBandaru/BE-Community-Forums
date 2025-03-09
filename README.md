@@ -8,6 +8,7 @@ A full-stack web application where users can sign up, create forums, and interac
 - Forum creation, editing, and deletion
 - Commenting system
 - Tag-based categorization
+- Responsive design for mobile and desktop
 
 ## Tech Stack
 
@@ -23,10 +24,16 @@ A full-stack web application where users can sign up, create forums, and interac
 - PostgreSQL database
 - JWT authentication
 
+## Live Demo
+
+Visit the live application:
+- **Frontend**: [https://community-forums-fowk.vercel.app/](https://community-forums-fowk.vercel.app/)
+- **Backend API**: [https://be-community-forums.onrender.com/](https://be-community-forums.onrender.com/)
+
 ## Getting Started
 
 ### Prerequisites
-- Node.js
+- Node.js (v14 or higher)
 - PostgreSQL
 
 ### Installation
@@ -48,7 +55,17 @@ A full-stack web application where users can sign up, create forums, and interac
    ```
 
 3. Set up environment variables
-   Create `.env` files in both frontend and backend directories
+   
+   **Backend (.env)**
+   ```
+   DATABASE_URL=your_postgresql_connection_string
+   JWT_SECRET=your_jwt_secret_key
+   ```
+
+   **Frontend (.env.local)**
+   ```
+   NEXT_PUBLIC_API_URL=http://localhost:10000
+   ```
 
 4. Run database migrations
    ```
@@ -67,10 +84,44 @@ A full-stack web application where users can sign up, create forums, and interac
    npm run dev
    ```
 
+## API Endpoints
+
+### Users
+- `POST /api/users/register` - Register a new user
+- `POST /api/users/login` - Login a user
+- `GET /api/users/profile` - Get user profile (protected)
+
+### Forums
+- `GET /api/forums` - Get all forums
+- `GET /api/forums/:id` - Get forum by ID
+- `POST /api/forums` - Create a new forum (protected)
+- `PUT /api/forums/:id` - Update a forum (protected)
+- `DELETE /api/forums/:id` - Delete a forum (protected)
+
+### Comments
+- `GET /api/comments/forum/:forumId` - Get comments by forum ID
+- `POST /api/comments` - Create a new comment (protected)
+
 ## Deployment
 
-This application is deployed on Railway. Visit [live demo](https://your-app-url.railway.app).
+### Backend
+The backend is deployed on Render:
+1. Create a new Web Service in Render
+2. Connect your GitHub repository
+3. Set the build command: `npm install && npx prisma generate`
+4. Set the start command: `node index.js`
+5. Add environment variables: `DATABASE_URL` and `JWT_SECRET`
 
-## License
+### Frontend
+The frontend is deployed on Vercel:
+1. Import your GitHub repository to Vercel
+2. Set the environment variable: `NEXT_PUBLIC_API_URL=https://be-community-forums.onrender.com`
+3. Deploy
 
-[MIT](LICENSE)
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
