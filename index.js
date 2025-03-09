@@ -11,7 +11,12 @@ const { PrismaClient } = require('@prisma/client');
 
 // Initialize express
 const app = express();
-const PORT = process.env.PORT || 5000;
+
+const PORT = process.env.PORT || 5000; // ✅ This ensures the correct port
+
+app.listen(PORT, '0.0.0.0', () => { // ✅ Explicitly bind to all interfaces
+  console.log(`Server running on port ${PORT}`);
+});
 
 // Debug environment variables
 console.log('Environment variables loaded:');
@@ -70,8 +75,8 @@ process.on('unhandledRejection', (reason, promise) => {
 // Server start
 const startServer = async () => {
   try {
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server running on port ${PORT} and host 0.0.0.0`);
     });
   } catch (error) {
     console.error('Unable to start server:', error);
