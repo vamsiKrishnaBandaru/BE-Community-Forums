@@ -27,7 +27,7 @@ A full-stack web application where users can sign up, create forums, and interac
 ## Live Demo
 
 Visit the live application:
-- **Frontend**: [https://community-forums-fowk.vercel.app/](https://community-forums-fowk.vercel.app/)
+- **Frontend**: [https://community-forums-fo-git-40ba0d-vamsi-krishnas-projects-b141a25b.vercel.app](https://community-forums-fo-git-40ba0d-vamsi-krishnas-projects-b141a25b.vercel.app)
 - **Backend API**: [https://be-community-forums.onrender.com/](https://be-community-forums.onrender.com/)
 
 ## Getting Started
